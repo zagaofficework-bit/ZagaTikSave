@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="dp_5">5dp</dimen>
+    <dimen name="dp_60">60dp</dimen>
+    <dimen name="dp_44">44dp</dimen>
+    <dimen name="dp_16">16dp</dimen>
+    <dimen name="dp_75">75dp</dimen>
+
+    <dimen name="toolbar_height">60dp</dimen>
+    <dimen name="_1sdp">1.00dp</dimen>
+    <dimen name="media_grid_size">48dp</dimen>
+    <dimen name="media_grid_spacing">4dp</dimen>
+
+    <dimen name="album_item_height">72dp</dimen>
+    <dimen name="grid_expected_size">120dp</dimen>
+    <dimen name="text_inside_icon">8dp</dimen>
+    <dimen name="preview_height">180dip</dimen>
+</resources>

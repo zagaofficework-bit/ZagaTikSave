@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/simpleTableLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="40dp"
+    android:padding="5dp"
+    android:stretchColumns="*">
+
+    <TableRow
+        android:id="@+id/firstRow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/resolution"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:layout_weight="1"
+            android:ellipsize="marquee"
+            android:fadingEdge="horizontal"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:maxLength="50"
+            android:scrollHorizontally="true"
+            android:singleLine="true"
+            android:text="undifined"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/fileSize"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:layout_weight="1"
+            android:text="0 bytes"
+            android:textAlignment="center"
+            android:textSize="14sp"
+            android:visibility="invisible" />
+
+        <Button
+            android:id="@+id/downloadqua"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_column="2"
+            android:layout_weight="1"
+            android:textColor="@color/white"
+            android:background="@drawable/bg_btn_login"
+            android:text="@string/download" />
+    </TableRow>
+</TableLayout>

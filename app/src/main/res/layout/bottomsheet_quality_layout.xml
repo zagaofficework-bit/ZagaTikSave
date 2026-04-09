@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bottom_sheet"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="16dp"
+    android:layout_marginBottom="5dp"
+    android:background="@drawable/bg_dialog"
+    android:nestedScrollingEnabled="true"
+    android:orientation="vertical"
+    android:padding="8dp"
+    app:layout_behavior="android.support.design.widget.BottomSheetBehavior">
+
+    <LinearLayout
+        android:id="@+id/linttt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btncancel_bottomsheet"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="3dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginEnd="3dp"
+                android:layout_marginBottom="3dp"
+                android:background="@drawable/btn_bg"
+                android:backgroundTint="@color/white"
+                android:elevation="5dp"
+                android:foreground="@drawable/ic_close_24dp"
+                android:foregroundTint="@color/colorPrimary"
+                android:textColor="#D81313" />
+
+            <Button
+                android:id="@+id/btnopen_bottomsheet"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="3dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginEnd="3dp"
+                android:layout_marginBottom="3dp"
+                android:background="@drawable/btn_bg"
+                android:backgroundTint="@color/white"
+                android:elevation="5dp"
+                android:foreground="@drawable/ic_baseline_expand_less_24"
+                android:foregroundTint="@color/colorPrimary"
+                android:textColor="#D81313" />
+        </RelativeLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <ImageView
+                android:id="@+id/bottomsheet_thumbnail"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_weight="0"
+                app:srcCompat="@drawable/ic_launcher" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/linttt"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="2"
+                android:orientation="vertical"
+                android:paddingStart="10dp"
+                android:weightSum="2">
+
+
+                <TextView
+                    android:id="@+id/bottomsheet_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/title"
+                    android:textAlignment="textStart"
+                    android:textIsSelectable="true"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/bottomsheet_duration"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/duration"
+                    android:textAlignment="textStart"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+
+                <TextView
+                    android:id="@+id/bottomsheet_description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:maxHeight="100dp"
+                    android:text="@string/description_goes_here"
+                    android:textAlignment="textStart"
+                    android:textIsSelectable="true"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:layout_weight="2"
+                android:text="@string/select_quality"
+                android:textColor="#444"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/source_bottomsheet"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:text="@string/source"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linbbb"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/linttt"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_gravity="center_vertical"
+        android:background="@drawable/tableview_border"
+        android:orientation="horizontal"
+        android:weightSum="3">
+
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/resolution"
+            android:textAlignment="center"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="0dp"
+
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/filesize"
+            android:textAlignment="center"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="0dp"
+
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/download"
+            android:textAlignment="center"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/linbbb"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical"
+        android:weightSum="2">
+
+        <LinearLayout
+            android:id="@+id/linbbb3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="5dp"
+            android:layout_weight="1"
+            android:minHeight="25dp"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:layout_width="70dp"
+                android:layout_height="25dp"
+                android:text="@string/videos_text"
+                android:textAlignment="center"
+                android:textColor="#FF0400"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recqualitybottomsheet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:minHeight="50dp"
+                android:padding="5dp"
+                tools:listitem="@layout/item_quality_bottomfragment" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linbbb2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="5dp"
+            android:layout_weight="1"
+            android:minHeight="25dp"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+
+            <TextView
+                android:layout_width="70dp"
+                android:layout_height="25dp"
+                android:text="@string/audio_text"
+                android:textAlignment="center"
+                android:textColor="#FF0400"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recqualitybottomsheet_aud"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:minHeight="50dp"
+                android:padding="5dp"
+                tools:listitem="@layout/item_quality_bottomfragment" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>

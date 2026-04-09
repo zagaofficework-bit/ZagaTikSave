@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/viewRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#111111">
+
+    <ImageView
+        android:id="@+id/ivBgContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="@null"
+        android:scaleType="centerCrop" />
+
+    <ImageView
+        android:id="@+id/photoView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="@null" />
+
+    <com.zagavideodown.app.views.VideoViewCustom
+        android:id="@+id/playerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:visibility="visible" />
+
+    <include layout="@layout/layout_bottom_item_view" />
+
+    <ImageButton
+        android:id="@+id/btnPlay"
+        style="@style/CustomExoMediaButton.Play"
+        android:layout_gravity="center"
+        android:contentDescription="@null"
+        android:visibility="gone" />
+</FrameLayout>
+

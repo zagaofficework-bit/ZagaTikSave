@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Professional Indigo & Slate Palette -->
+    <color name="colorPrimary">#4F46E5</color> <!-- Indigo 600 -->
+    <color name="colorPrimaryDark">#3730A3</color> <!-- Indigo 800 -->
+    <color name="colorAccent">#F43F5E</color> <!-- Rose 500 -->
+    <color name="colorWhite">#ffffff</color>
+    <color name="black">#0F172A</color> <!-- Slate 900 -->
+    
+    <!-- Backgrounds -->
+    <color name="background_main">#F8FAFC</color> <!-- Slate 50 -->
+    <color name="background_secondary">#ffffff</color>
+    <color name="background_paste">#F1F5F9</color> <!-- Slate 100 -->
+    <color name="background_rate_dialog">#ffffff</color>
+    
+    <!-- Dividers and Grays -->
+    <color name="divider">#E2E8F0</color> <!-- Slate 200 -->
+    <color name="divider2">#CBD5E1</color> <!-- Slate 300 -->
+    <color name="icon_color">#475569</color> <!-- Slate 600 -->
+    <color name="blue">#3B82F6</color> <!-- Blue 500 -->
+    <color name="gray">#94A3B8</color> <!-- Slate 400 -->
+    <color name="bg_cancel_text_color">#64748B</color> <!-- Slate 500 -->
+    
+    <!-- Text Colors -->
+    <color name="text_color_main">#1E293B</color> <!-- Slate 800 -->
+    <color name="text_color_second">#64748B</color> <!-- Slate 500 -->
+    <color name="colorTextPrimary">#1E293B</color>
+    <color name="colorTextSecondary">#94A3B8</color>
+    <color name="text_color_selected">#4F46E5</color>
+    <color name="text_color_no_selected">#94A3B8</color>
+    
+    <!-- Progress and UI elements -->
+    <color name="progress_primary">#4F46E5</color>
+    <color name="progress_secondary">#94A3B8</color>
+    <color name="progress_max_active">#3730A3</color>
+    <color name="gray_scale">#F1F5F9</color>
+    <color name="white">#fff</color>
+    <color name="color_btn_negative_bound">#F1F5F9</color>
+    <color name="color_drag_tip">#CBD5E1</color>
+    <color name="background_tab">#ffffff</color>
+    <color name="grey_dd_main">#94A3B8</color>
+    <color name="tint_settings_icon_unselected">#64748B</color>
+    <color name="transparent_dark">#80000000</color>
+    <color name="md_white_1000">#ffffff</color>
+    <color name="transparent_open">#10000000</color>
+    
+    <!-- Video Player Legacy Colors -->
+    <color name="uvv_gray">#94A3B8</color>
+    <color name="uvv_black">#0F172A</color>
+    <color name="uvv_light_gray">#F1F5F9</color>
+    <color name="uvv_titlebar_bg">#7F0F172A</color>
+</resources>

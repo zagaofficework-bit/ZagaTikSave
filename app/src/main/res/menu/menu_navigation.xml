@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="@string/menu_nav_general">
+        <menu>
+            <item
+                android:id="@+id/drawer_how_to_use"
+                android:icon="@drawable/ic_help"
+                android:title="@string/menu_nav_how_to_download" />
+            <item
+                android:id="@+id/drawer_settings"
+                android:icon="@drawable/ic_settings"
+                android:title="@string/menu_nav_settings" />
+            <item
+                android:id="@+id/drawer_langugage"
+                android:icon="@drawable/ic_settings_language"
+                android:title="@string/menu_nav_language" />
+
+        </menu>
+    </item>
+
+
+    <item android:title="@string/menu_nav_about">
+        <menu>
+            <item
+                android:id="@+id/drawer_rate_app"
+                android:icon="@drawable/ic_rate"
+                android:title="@string/menu_nav_rate_app" />
+            <item
+                android:id="@+id/drawer_feed_back"
+                android:icon="@drawable/ic_feedback"
+                android:title="@string/menu_nav_feedback" />
+            <item
+                android:id="@+id/drawer_share_app"
+                android:icon="@drawable/ic_share"
+                android:title="@string/menu_nav_share_app" />
+            <item
+                android:id="@+id/drawer_family_app"
+                android:icon="@drawable/ic_family_app"
+                android:title="@string/menu_nav_family_apps" />
+        </menu>
+
+
+    </item>
+
+
+</menu>

@@ -1,0 +1,76 @@
+[versions]
+agp = "9.0.0"
+androidNetworking = "1.0.4"
+ffmpeg = "0.18.1"
+junit = "4.13.2"
+junitVersion = "1.3.0"
+espressoCore = "3.7.0"
+appcompat = "1.7.1"
+libraryVersion = "0.18.1"
+material = "1.13.0"
+activity = "1.12.2"
+constraintlayout = "2.2.1"
+
+
+circleimageview = "3.1.0"
+commonsCompress = "1.28.0"
+okhttpBom = "5.3.2"
+converterGson = "3.0.0"
+commonsText = "1.15.0"
+commonsIo = "2.21.0"
+photoview = "2.3.0"
+universalvideoview = "1.1.0"
+workRuntime = "2.11.0"
+rxjava = "3.1.12"
+jacksonModuleKotlin = "2.18.2"
+webkit = "1.15.0"
+persistentcookiejar = "v1.0.1"
+jsoup = "1.22.1"
+circleindicator = "2.1.6"
+swiperefreshlayout = "1.2.0"
+glide = "5.0.5"
+lottie = "6.7.1"
+eventbus = "3.3.1"
+library = "2.4"
+playServicesAds = "24.7.0"
+
+[libraries]
+android-networking = { module = "com.github.amitshekhariitbhu.Fast-Android-Networking:android-networking", version.ref = "androidNetworking" }
+ffmpeg = { module = "io.github.junkfood02.youtubedl-android:ffmpeg", version.ref = "ffmpeg" }
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
+espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
+appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
+constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
+
+
+circleimageview = { module = "de.hdodenhof:circleimageview", version.ref = "circleimageview" }
+commons-compress = { module = "org.apache.commons:commons-compress", version.ref = "commonsCompress" }
+logging-interceptor = { module = "com.squareup.okhttp3:logging-interceptor" }
+okhttp-bom = { module = "com.squareup.okhttp3:okhttp-bom", version.ref = "okhttpBom" }
+converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "converterGson" }
+commons-text = { module = "org.apache.commons:commons-text", version.ref = "commonsText" }
+commons-io = { module = "commons-io:commons-io", version.ref = "commonsIo" }
+photoview = { module = "com.github.chrisbanes:PhotoView", version.ref = "photoview" }
+universalvideoview = { module = "com.linsea:universalvideoview", version.ref = "universalvideoview" }
+work-runtime = { module = "androidx.work:work-runtime", version.ref = "workRuntime" }
+work-runtime-ktx = { module = "androidx.work:work-runtime-ktx", version.ref = "workRuntime" }
+rxjava = { module = "io.reactivex.rxjava3:rxjava", version.ref = "rxjava" }
+jackson-module-kotlin = { module = "com.fasterxml.jackson.module:jackson-module-kotlin", version.ref = "jacksonModuleKotlin" }
+webkit = { module = "androidx.webkit:webkit", version.ref = "webkit" }
+persistentcookiejar = { module = "com.github.franmontiel:PersistentCookieJar", version.ref = "persistentcookiejar" }
+jsoup = { module = "org.jsoup:jsoup", version.ref = "jsoup" }
+circleindicator = { module = "me.relex:circleindicator", version.ref = "circleindicator" }
+swiperefreshlayout = { module = "androidx.swiperefreshlayout:swiperefreshlayout", version.ref = "swiperefreshlayout" }
+glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
+eventbus = { module = "org.greenrobot:eventbus", version.ref = "eventbus" }
+lottie = { module = "com.airbnb.android:lottie", version.ref = "lottie" }
+library = { module = "com.daimajia.easing:library", version.ref = "library" }
+youtubedl-android-library = { module = "io.github.junkfood02.youtubedl-android:library", version.ref = "libraryVersion" }
+play-services-ads = { module = "com.google.android.gms:play-services-ads", version.ref = "playServicesAds" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp" }
+

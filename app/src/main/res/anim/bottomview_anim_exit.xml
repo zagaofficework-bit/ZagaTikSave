@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ /**
+  ~  * Created by Syed Usama Ahmad on 3/3/23, 12:53 AM
+  ~  * Copyright (c) 2023 . All rights reserved.
+  ~  * Last modified 3/2/23, 11:57 PM
+  ~  */
+  -->
+
+<set xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <translate
+        android:duration="300"
+        android:fromYDelta="0"
+        android:toYDelta="100%p" />
+
+</set>

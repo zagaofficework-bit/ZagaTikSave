@@ -1,0 +1,109 @@
+plugins {
+    alias(libs.plugins.android.application)
+}
+
+android {
+    namespace 'com.zagavideodown.app'
+    compileSdk 36
+
+    defaultConfig {
+        applicationId "com.zagavideodown.app"
+        minSdk 24
+        targetSdk 36
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        ndk {
+            //noinspection ChromeOsAbiSupport
+            abiFilters 'armeabi-v7a', 'arm64-v8a'
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+
+    bundle {
+        language {
+            enableSplit = false
+        }
+    }
+    buildFeatures {
+        buildConfig = true
+        viewBinding = true
+    }
+    packagingOptions {
+        jniLibs {
+            useLegacyPackaging = true
+        }
+    }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+}
+
+dependencies {
+
+    implementation libs.appcompat
+    implementation libs.material
+    implementation libs.activity
+    implementation libs.constraintlayout
+    testImplementation libs.junit
+    androidTestImplementation libs.ext.junit
+    androidTestImplementation libs.espresso.core
+
+    //Animation
+    implementation libs.library
+
+    implementation(libs.eventbus)
+
+    implementation libs.lottie
+    implementation libs.glide
+    implementation libs.swiperefreshlayout
+
+    implementation libs.circleindicator
+
+
+    implementation libs.jsoup
+
+
+    //Download video lib
+    implementation libs.persistentcookiejar
+    implementation libs.webkit
+    implementation libs.jackson.module.kotlin
+    implementation(libs.rxjava)
+    implementation libs.work.runtime
+    runtimeOnly libs.work.runtime.ktx
+    implementation libs.commons.text
+    implementation libs.commons.io
+    //rest api retrofit
+    implementation libs.converter.gson
+
+    implementation(platform(libs.okhttp.bom))
+    implementation libs.logging.interceptor
+    implementation libs.commons.compress
+    implementation libs.circleimageview
+    implementation libs.photoview
+    implementation libs.android.networking
+    implementation 'io.reactivex.rxjava3:rxandroid:3.0.2'
+    implementation("io.reactivex.rxjava3:rxjava:3.1.10")
+
+    implementation libs.play.services.ads
+
+}

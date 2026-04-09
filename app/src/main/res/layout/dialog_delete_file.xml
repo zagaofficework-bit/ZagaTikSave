@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="24dp">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="36dp"
+        android:background="@drawable/bg_dialog"
+        app:layout_constraintBottom_toBottomOf="@+id/bottom_space"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/iv_icon" />
+
+    <ImageView
+        android:id="@+id/iv_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_confirm" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="24dp"
+        android:fontFamily="@font/product_bold"
+        android:gravity="start"
+        android:includeFontPadding="false"
+        android:text="@string/str_delete"
+        android:textColor="@color/colorTextPrimary"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/iv_icon" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_des"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="21dp"
+        android:layout_marginEnd="24dp"
+        android:fontFamily="@font/product_regular"
+        android:gravity="start"
+        android:includeFontPadding="false"
+        android:text="@string/dialog_delete_body"
+        android:textAlignment="viewStart"
+        android:textColor="@color/colorTextPrimary"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_bt_negative"
+        android:layout_width="0dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="33dp"
+        android:layout_marginEnd="12dp"
+        android:background="@drawable/bg_btn_negative"
+        android:fontFamily="@font/product_bold"
+        android:gravity="center"
+        android:text="@string/cancel"
+        android:textColor="@color/bg_cancel_text_color"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/tv_bt_positive"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_des"
+        app:textAllCaps="true" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_bt_positive"
+        android:layout_width="0dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="24dp"
+        android:background="@drawable/bg_btn_login"
+        android:fontFamily="@font/product_bold"
+        android:gravity="center"
+        android:text="@string/str_delete"
+        android:textColor="#ffffff"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tv_bt_negative"
+        app:layout_constraintTop_toTopOf="@+id/tv_bt_negative"
+        app:textAllCaps="true" />
+
+    <Space
+        android:id="@+id/bottom_space"
+
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_bt_negative" />
+</androidx.constraintlayout.widget.ConstraintLayout>

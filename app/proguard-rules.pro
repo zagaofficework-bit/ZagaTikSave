@@ -10,7 +10,7 @@
 # Gson
 -keep class com.google.gson.** { *; }
 -keep class com.zagavideodown.app.models.** { *; }
--keep class com.example.tiksave.models.** { *; } # Legacy safety
+-keep class com.example.zagasave.models.** { *; } # Legacy safety
 
 # OkHttp/Okio
 -dontwarn okio.**
@@ -19,6 +19,11 @@
 
 # Jsoup
 -keep class org.jsoup.** { *; }
+-dontwarn com.google.re2j.**
+
+# Apache Commons Compress
+-dontwarn com.github.luben.zstd.**
+-dontwarn org.tukaani.xz.**
 
 # EventBus
 -keepclassmembers class * {

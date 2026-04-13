@@ -24,14 +24,13 @@ public class AppController extends Application {
                 e.printStackTrace();
             }
         }).start();
-        new Thread(() -> {
-            // Initialize the Google Mobile Ads SDK on a background thread.
-            MobileAds.initialize(this, initializationStatus -> {
-            });
 
-        }).start();
-        FullAds.loadAds(this);
-
+        // MobileAds MUST finish before any ad is requested.
+        // FullAds.loadAds() is now called inside the callback to guarantee ordering.
+        MobileAds.initialize(this, initializationStatus -> {
+            // MobileAds is now ready — safe to load interstitial ads.
+            FullAds.loadAds(AppController.this);
+        });
     }
 
     private void initializeApplication() {
@@ -41,6 +40,7 @@ public class AppController extends Application {
             e.printStackTrace();
         }
     }
+
     private void configureRxJavaErrorHandler() {
         RxJavaPlugins.setErrorHandler(e -> {
             Throwable error = e;

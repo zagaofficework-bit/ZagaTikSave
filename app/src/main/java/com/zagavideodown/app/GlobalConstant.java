@@ -14,20 +14,20 @@ public class GlobalConstant {
     public static String STORY_POSITION = "Position";
     public static String myInstagramTempCookies = "";
     public static String GUIDE_SET = "guide_set";
-    public static String RootDirectoryHD = "/TikSave/VideoHD/";
+    public static String RootDirectoryHD = "/MediaManager/VideosHD/";
     public static final String TEST_DEVICE_HASHED_ID = "903957CFACA92DD2EAD1287E887E33AA";
 
-    public static boolean showyoutube = true;
+    public static boolean showyoutube = false;
 
     public static String MY_ANDROID_10_IDENTIFIER_OF_FILE = "All_Video_Downloader_";
 
-    public static File RootDirectoryVideoHDSaved = new File(Environment.getExternalStorageDirectory() + "/Download/TikSave/VideoHD");
+    public static File RootDirectoryVideoHDSaved = new File(Environment.getExternalStorageDirectory() + "/Download/MediaManager/VideosHD");
     //    public static File RootDirectoryVideoSaved = new File(Environment.getExternalStorageDirectory() + "/Download/TikSave/Video");
-    public static File RootDirectoryAudioSaved = new File(Environment.getExternalStorageDirectory() + "/Download/TikSave/Audio");
+    public static File RootDirectoryAudioSaved = new File(Environment.getExternalStorageDirectory() + "/Download/MediaManager/Audio");
 
     public static String TIKTOK_PACKAGE = "com.ss.android.ugc.trill";
 
-    public static boolean isNonPlayStoreApp = true;
+    public static boolean isNonPlayStoreApp = false;
 
     public static String[] UserAgentsList0 = {"Mozilla/5.0 (Linux; Android 10; SM-A205U) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Mobile Safari/537.36",
             "Mozilla/5.0 (Linux; Android 10; SM-G981B) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.162 Mobile Safari/537.36",
@@ -53,9 +53,9 @@ public class GlobalConstant {
     public static File RootDirectoryVideoSaved = new File(Environment.getExternalStorageDirectory() + "/Download/VideoDownload/videos/");
     public static File RootDirectoryPhotoSaved = new File(Environment.getExternalStorageDirectory() + "/Download/VideoDownload/images/");
 
-    public static String directoryInstaShoryDirectorydownload_videos = "/VideoDownload/videos/";
-    public static String directoryInstaShoryDirectorydownload_images = "/VideoDownload/images/";
-    public static String directoryInstaShoryDirectorydownload_audio = "/VideoDownload/audios/";
+    public static String directoryMediaVideos = "/VideoDownload/videos/";
+    public static String directoryMediaImages = "/VideoDownload/images/";
+    public static String directoryMediaAudio = "/VideoDownload/audios/";
 
     public static String myNotificationChannel = "";
 

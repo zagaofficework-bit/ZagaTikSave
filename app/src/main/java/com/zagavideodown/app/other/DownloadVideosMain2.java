@@ -1786,33 +1786,49 @@ public class DownloadVideosMain2 {
 
 
     public static void dismissMyDialog() {
-
-        if (pd != null && pd.isShowing() && !fromService && !Mcontext.isFinishing()) {
-            pd.dismiss();
+        try {
+            if (pd != null && pd.isShowing() && !fromService
+                    && Mcontext != null && !Mcontext.isFinishing() && !Mcontext.isDestroyed()) {
+                pd.dismiss();
+            }
+        } catch (Exception e) {
+            Log.e("DownloadVideosMain2", "dismissMyDialog error: " + e.getMessage());
         }
     }
 
     public static void dismissMyDialogErrortoast() {
-
-        if (pd != null && pd.isShowing() && !fromService && !Mcontext.isFinishing()) {
-            pd.dismiss();
-            Mcontext.runOnUiThread(() -> {
-                Utils.ShowToastError(Mcontext,
-                        Mcontext.getResources().getString(R.string.somthing)
-                );
-            });
+        try {
+            if (pd != null && pd.isShowing() && !fromService
+                    && Mcontext != null && !Mcontext.isFinishing() && !Mcontext.isDestroyed()) {
+                pd.dismiss();
+                Mcontext.runOnUiThread(() -> {
+                    if (!Mcontext.isFinishing() && !Mcontext.isDestroyed()) {
+                        Utils.ShowToastError(Mcontext,
+                                Mcontext.getResources().getString(R.string.somthing)
+                        );
+                    }
+                });
+            }
+        } catch (Exception e) {
+            Log.e("DownloadVideosMain2", "dismissError error: " + e.getMessage());
         }
     }
 
     public static void dismissMyDialogErrorToastForBlockedWebsitePanel() {
-
-        if (pd != null && pd.isShowing() && !fromService && !Mcontext.isFinishing()) {
-            pd.dismiss();
-            Mcontext.runOnUiThread(() -> {
-                Utils.ShowToast(Mcontext,
-                        Mcontext.getResources().getString(R.string.somthing_webiste_panele_block)
-                );
-            });
+        try {
+            if (pd != null && pd.isShowing() && !fromService
+                    && Mcontext != null && !Mcontext.isFinishing() && !Mcontext.isDestroyed()) {
+                pd.dismiss();
+                Mcontext.runOnUiThread(() -> {
+                    if (!Mcontext.isFinishing() && !Mcontext.isDestroyed()) {
+                        Utils.ShowToast(Mcontext,
+                                Mcontext.getResources().getString(R.string.somthing_webiste_panele_block)
+                        );
+                    }
+                });
+            }
+        } catch (Exception e) {
+            Log.e("DownloadVideosMain2", "dismissBlocked error: " + e.getMessage());
         }
     }
 

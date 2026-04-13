@@ -412,33 +412,42 @@ public class DownloadVideosMain {
     }
 
     public static void dismissMyDialog() {
-
-        if (pd != null && pd.isShowing() && !fromService && !Mcontext.isFinishing()) {
-            pd.dismiss();
+        try {
+            if (pd != null && pd.isShowing() && !fromService
+                    && Mcontext != null && !Mcontext.isFinishing() && !Mcontext.isDestroyed()) {
+                pd.dismiss();
+            }
+        } catch (Exception e) {
+            Log.e("DownloadVideosMain", "dismissMyDialog error: " + e.getMessage());
         }
     }
 
     public static void dismissMyDialogErrortoast() {
-
-        if (pd != null && pd.isShowing() && !fromService && !Mcontext.isFinishing()) {
-            pd.dismiss();
-//            Mcontext.runOnUiThread(() -> {
-//                Utils.ShowToastError(Mcontext,
-//                        Mcontext.getResources().getString(R.string.something)
-//                );
-//            });
+        try {
+            if (pd != null && pd.isShowing() && !fromService
+                    && Mcontext != null && !Mcontext.isFinishing() && !Mcontext.isDestroyed()) {
+                pd.dismiss();
+            }
+        } catch (Exception e) {
+            Log.e("DownloadVideosMain", "dismissMyDialogErrortoast error: " + e.getMessage());
         }
     }
 
     public static void dismissMyDialogErrorToastForBlockedWebsitePanel() {
-
-        if (pd != null && pd.isShowing() && !fromService && !Mcontext.isFinishing()) {
-            pd.dismiss();
-            Mcontext.runOnUiThread(() -> {
-                Utils.ShowToast(Mcontext,
-                        Mcontext.getResources().getString(R.string.something_webiste_panele_block)
-                );
-            });
+        try {
+            if (pd != null && pd.isShowing() && !fromService
+                    && Mcontext != null && !Mcontext.isFinishing() && !Mcontext.isDestroyed()) {
+                pd.dismiss();
+                Mcontext.runOnUiThread(() -> {
+                    if (!Mcontext.isFinishing() && !Mcontext.isDestroyed()) {
+                        Utils.ShowToast(Mcontext,
+                                Mcontext.getResources().getString(R.string.something_webiste_panele_block)
+                        );
+                    }
+                });
+            }
+        } catch (Exception e) {
+            Log.e("DownloadVideosMain", "dismissBlocked error: " + e.getMessage());
         }
     }
 

@@ -55,7 +55,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Utils {
-    public static boolean isNonPlayStoreApp = true;
+    public static boolean isNonPlayStoreApp = false;
     private static final DecimalFormat format = new DecimalFormat("#.##");
     private static final long MiB = 1024 * 1024;
     private static final long KiB = 1024;
@@ -218,21 +218,14 @@ public class Utils {
     }
 
     public static boolean isSocialMediaOn(String source) {
-
-        source = (source.contains("youtu.be")) ? "youtube.com" : source;
-
-
-        if (GlobalConstant.iSAdminAttached) {
-            if (socialMediaList != null) {
-                return socialMediaList.contains(source);
-            } else {
-                Log.i("LOGClipboard111111 clip youtube", " false");
-                return true;
-            }
-        } else {
-            Log.i("LOGClipboard111111 clip youtube", " false 2");
-            return true;
+        if (source == null) return false;
+        source = source.toLowerCase();
+        if (source.contains("youtube.com") || source.contains("youtu.be") || 
+            source.contains("instagram.com") || source.contains("tiktok.com") || 
+            source.contains("facebook.com") || source.contains("fb.watch")) {
+            return false;
         }
+        return true;
     }
 
     public static void ShowToast(Context context, String str) {

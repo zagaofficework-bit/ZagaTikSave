@@ -17,10 +17,6 @@
         android:name="android.permission.READ_EXTERNAL_STORAGE"
         android:maxSdkVersion="32" />
 
-    <queries>
-        <package android:name="com.ss.android.ugc.trill" />
-        <package android:name="com.instagram.android" />
-    </queries>
 
     <application
         android:name=".AppController"

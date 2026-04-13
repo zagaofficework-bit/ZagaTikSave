@@ -39,10 +39,13 @@ public class NativeAdsAdmob {
         if (mActivity != null) {
             AdLoader.Builder builder = new AdLoader.Builder(mActivity, mActivity.getResources().getString(R.string.AdmobNativeAds));
             builder.forNativeAd(nativeAd -> {
-                boolean isDestroyed;
-                isDestroyed = mActivity.isDestroyed();
-                if (isDestroyed || mActivity.isFinishing() || mActivity.isChangingConfigurations()) {
+                if (mActivity.isDestroyed() || mActivity.isFinishing() || mActivity.isChangingConfigurations()) {
                     nativeAd.destroy();
+                    return;
+                }
+                if (frameLayout == null || rlLoadingAds == null) {
+                    nativeAd.destroy();
+                    return;
                 }
                 @SuppressLint("InflateParams") NativeAdView adView =
                         (NativeAdView) mActivity.getLayoutInflater()
@@ -51,8 +54,6 @@ public class NativeAdsAdmob {
                 rlLoadingAds.setVisibility(View.GONE);
                 frameLayout.removeAllViews();
                 frameLayout.addView(adView);
-
-
             });
             AdLoader adLoader = builder.withAdListener(new AdListener() {
                 @Override
@@ -103,24 +104,26 @@ public class NativeAdsAdmob {
 
 
     public static void loadNativeBig1(Activity mActivity, View view) {
+        if (mActivity == null || mActivity.isFinishing() || mActivity.isDestroyed()) return;
+
         RelativeLayout rlLoadingAds;
         FrameLayout frameLayout;
 
         if (view != null) {
             frameLayout = view.findViewById(R.id.ads_container_native_1);
             rlLoadingAds = view.findViewById(R.id.rl_loading_ad_1);
-
         } else {
             frameLayout = mActivity.findViewById(R.id.ads_container_native_1);
             rlLoadingAds = mActivity.findViewById(R.id.rl_loading_ad_1);
         }
 
+        if (frameLayout == null || rlLoadingAds == null) return;
+
         AdLoader.Builder builder = new AdLoader.Builder(mActivity, mActivity.getResources().getString(R.string.AdmobNativeAds));
         builder.forNativeAd(nativeAd -> {
-            boolean isDestroyed;
-            isDestroyed = mActivity.isDestroyed();
-            if (isDestroyed || mActivity.isFinishing() || mActivity.isChangingConfigurations()) {
+            if (mActivity.isDestroyed() || mActivity.isFinishing() || mActivity.isChangingConfigurations()) {
                 nativeAd.destroy();
+                return;
             }
             @SuppressLint("InflateParams") NativeAdView adView =
                     (NativeAdView) mActivity.getLayoutInflater()
@@ -129,37 +132,37 @@ public class NativeAdsAdmob {
             rlLoadingAds.setVisibility(View.GONE);
             frameLayout.removeAllViews();
             frameLayout.addView(adView);
-
-
         });
         AdLoader adLoader = builder.withAdListener(new AdListener() {
             @Override
             public void onAdFailedToLoad(@NotNull LoadAdError loadAdError) {
                 super.onAdFailedToLoad(loadAdError);
-
             }
         }).build();
         adLoader.loadAd(new AdRequest.Builder().build());
     }
 
     public static void loadNativeBanner(Activity mActivity, View view) {
+        if (mActivity == null || mActivity.isFinishing() || mActivity.isDestroyed()) return;
+
         LinearLayout rlLoadingAds;
         FrameLayout frameLayout;
 
         if (view != null) {
             frameLayout = view.findViewById(R.id.ads_container_banner);
             rlLoadingAds = view.findViewById(R.id.ll_loading_ad_banner);
-
         } else {
             frameLayout = mActivity.findViewById(R.id.ads_container_banner);
             rlLoadingAds = mActivity.findViewById(R.id.ll_loading_ad_banner);
         }
+
+        if (frameLayout == null || rlLoadingAds == null) return;
+
         AdLoader.Builder builder = new AdLoader.Builder(mActivity, mActivity.getResources().getString(R.string.AdmobNativeAds));
         builder.forNativeAd(nativeAd -> {
-            boolean isDestroyed;
-            isDestroyed = mActivity.isDestroyed();
-            if (isDestroyed || mActivity.isFinishing() || mActivity.isChangingConfigurations()) {
+            if (mActivity.isDestroyed() || mActivity.isFinishing() || mActivity.isChangingConfigurations()) {
                 nativeAd.destroy();
+                return;
             }
             @SuppressLint("InflateParams") NativeAdView adView =
                     (NativeAdView) mActivity.getLayoutInflater()
@@ -168,14 +171,11 @@ public class NativeAdsAdmob {
             rlLoadingAds.setVisibility(View.GONE);
             frameLayout.removeAllViews();
             frameLayout.addView(adView);
-
-
         });
         AdLoader adLoader = builder.withAdListener(new AdListener() {
             @Override
             public void onAdFailedToLoad(@NotNull LoadAdError loadAdError) {
                 super.onAdFailedToLoad(loadAdError);
-
             }
         }).build();
         adLoader.loadAd(new AdRequest.Builder().build());

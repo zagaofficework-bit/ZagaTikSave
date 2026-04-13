@@ -38,6 +38,7 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 public class SplashActivity extends BaseActivity {
 
     private ActivitySplashBinding binding;
+    private final CompositeDisposable compositeDisposable = new CompositeDisposable();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,25 +52,26 @@ public class SplashActivity extends BaseActivity {
             return insets;
         });
 
-        Completable.fromAction(() -> initLibraries(SplashActivity.this))
+        DisposableCompletableObserver observer = Completable.fromAction(() -> initLibraries(SplashActivity.this))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new DisposableCompletableObserver() {
+                .subscribeWith(new DisposableCompletableObserver() {
                     @Override
                     public void onComplete() {
                         // it worked
                         Log.e("configureRxJavaSuccessHandler", "Done");
-
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        if (BuildConfig.DEBUG) {
-                            Log.e("configureRxJavaErrorHandler", "failed to initialize youtubedl-android", e);
-                            Toast.makeText(getApplicationContext(), "initialization failed: " + e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                        // Library init failed but still navigate - app can function without it
+                        Log.e("configureRxJavaErrorHandler", "failed to initialize youtubedl-android", e);
+                        if (!isFinishing() && !isDestroyed()) {
+                            executeCase();
                         }
                     }
                 });
+        compositeDisposable.add(observer);
 
 
         YoYo.with(Techniques.ZoomInLeft)
@@ -142,15 +144,24 @@ public class SplashActivity extends BaseActivity {
         }
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        compositeDisposable.clear();
+    }
+
     private void initLibraries(Context context) throws YoutubeDLException {
         try {
             initDlLibs(context, true);
-
-                executeCase();
-
+            // CRITICAL: startActivity/finish must run on the main thread.
+            // initLibraries() is called on the IO thread via Schedulers.io().
+            runOnUiThread(() -> {
+                if (!isFinishing() && !isDestroyed()) {
+                    executeCase();
+                }
+            });
         } catch (Throwable e) {
             Log.e("SplashScreenErrorYTDLP", "failed ", e);
-
             e.printStackTrace();
         }
     }

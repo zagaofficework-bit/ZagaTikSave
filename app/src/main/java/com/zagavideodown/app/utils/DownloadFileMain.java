@@ -55,16 +55,16 @@ public class DownloadFileMain {
             String mime = URLConnection.guessContentTypeFromName(cutTitle);
 
             try {
-                File file_v = new File(Environment.getExternalStoragePublicDirectory(DIRECTORY_DOWNLOADS) + GlobalConstant.directoryInstaShoryDirectorydownload_videos);
+                File file_v = new File(Environment.getExternalStoragePublicDirectory(DIRECTORY_DOWNLOADS) + GlobalConstant.directoryMediaVideos);
                 if (!file_v.exists()) {
                     file_v.mkdirs();
                 }
-                File file_i = new File(Environment.getExternalStoragePublicDirectory(DIRECTORY_DOWNLOADS) + GlobalConstant.directoryInstaShoryDirectorydownload_images);
+                File file_i = new File(Environment.getExternalStoragePublicDirectory(DIRECTORY_DOWNLOADS) + GlobalConstant.directoryMediaImages);
                 if (!file_i.exists()) {
                     file_i.mkdirs();
                 }
 
-                File file_a = new File(Environment.getExternalStoragePublicDirectory(DIRECTORY_DOWNLOADS) + GlobalConstant.directoryInstaShoryDirectorydownload_audio);
+                File file_a = new File(Environment.getExternalStoragePublicDirectory(DIRECTORY_DOWNLOADS) + GlobalConstant.directoryMediaAudio);
                 if (!file_a.exists()) {
                     file_a.mkdirs();
                 }
@@ -77,16 +77,16 @@ public class DownloadFileMain {
                 case ".jpg":
                 case ".gif":
                 case ".jpeg":
-                    request.setDestinationInExternalPublicDir(DIRECTORY_DOWNLOADS, GlobalConstant.directoryInstaShoryDirectorydownload_images + cutTitle);
+                    request.setDestinationInExternalPublicDir(DIRECTORY_DOWNLOADS, GlobalConstant.directoryMediaImages + cutTitle);
                     break;
                 case ".mp4":
                 case ".webm":
-                    request.setDestinationInExternalPublicDir(DIRECTORY_DOWNLOADS, GlobalConstant.directoryInstaShoryDirectorydownload_videos + cutTitle);
+                    request.setDestinationInExternalPublicDir(DIRECTORY_DOWNLOADS, GlobalConstant.directoryMediaVideos + cutTitle);
                     break;
                 case ".mp3":
                 case ".m4a":
                 case ".wav":
-                    request.setDestinationInExternalPublicDir(DIRECTORY_DOWNLOADS, GlobalConstant.directoryInstaShoryDirectorydownload_images + cutTitle);
+                    request.setDestinationInExternalPublicDir(DIRECTORY_DOWNLOADS, GlobalConstant.directoryMediaImages + cutTitle);
                     break;
             }
 
@@ -127,16 +127,16 @@ public class DownloadFileMain {
             try {
                 Log.i("DownloadFileMain", "Creating directories if not exist");
 
-                File file_v = new File(Environment.getExternalStoragePublicDirectory(DIRECTORY_DOWNLOADS) + GlobalConstant.directoryInstaShoryDirectorydownload_videos);
+                File file_v = new File(Environment.getExternalStoragePublicDirectory(DIRECTORY_DOWNLOADS) + GlobalConstant.directoryMediaVideos);
                 if (!file_v.exists()) {
                     file_v.mkdirs();
                 }
-                File file_i = new File(Environment.getExternalStoragePublicDirectory(DIRECTORY_DOWNLOADS) + GlobalConstant.directoryInstaShoryDirectorydownload_images);
+                File file_i = new File(Environment.getExternalStoragePublicDirectory(DIRECTORY_DOWNLOADS) + GlobalConstant.directoryMediaImages);
                 if (!file_i.exists()) {
                     file_i.mkdirs();
                 }
 
-                File file_a = new File(Environment.getExternalStoragePublicDirectory(DIRECTORY_DOWNLOADS) + GlobalConstant.directoryInstaShoryDirectorydownload_audio);
+                File file_a = new File(Environment.getExternalStoragePublicDirectory(DIRECTORY_DOWNLOADS) + GlobalConstant.directoryMediaAudio);
                 if (!file_a.exists()) {
                     file_a.mkdirs();
                 }
@@ -153,13 +153,13 @@ public class DownloadFileMain {
                 case ".jpeg":
                     Log.i("DownloadFileMain", "Set destination: image folder");
 
-                    request.setDestinationInExternalPublicDir(DIRECTORY_DOWNLOADS, GlobalConstant.directoryInstaShoryDirectorydownload_images + cutTitle);
+                    request.setDestinationInExternalPublicDir(DIRECTORY_DOWNLOADS, GlobalConstant.directoryMediaImages + cutTitle);
                     break;
                 case ".mp4":
                 case ".webm":
                     Log.i("DownloadFileMain", "Set destination: video folder");
 
-                    request.setDestinationInExternalPublicDir(DIRECTORY_DOWNLOADS, GlobalConstant.directoryInstaShoryDirectorydownload_videos + cutTitle);
+                    request.setDestinationInExternalPublicDir(DIRECTORY_DOWNLOADS, GlobalConstant.directoryMediaVideos + cutTitle);
 
                     break;
                 case ".mp3":
@@ -167,7 +167,7 @@ public class DownloadFileMain {
                 case ".wav":
                     Log.i("DownloadFileMain", "Set destination: audio folder");
 
-                    request.setDestinationInExternalPublicDir(DIRECTORY_DOWNLOADS, GlobalConstant.directoryInstaShoryDirectorydownload_audio + cutTitle);
+                    request.setDestinationInExternalPublicDir(DIRECTORY_DOWNLOADS, GlobalConstant.directoryMediaAudio + cutTitle);
                     break;
             }
 

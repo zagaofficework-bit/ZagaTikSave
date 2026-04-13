@@ -86,21 +86,21 @@ class DownloadWorker(appContext: Context, params: WorkerParameters) :
         try {
             val file_v = File(
                 Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
-                    .toString() + GlobalConstant.directoryInstaShoryDirectorydownload_videos
+                    .toString() + GlobalConstant.directoryMediaVideos
             )
             if (!file_v.exists()) {
                 file_v.mkdir()
             }
             val file_i = File(
                 Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
-                    .toString() + GlobalConstant.directoryInstaShoryDirectorydownload_images
+                    .toString() + GlobalConstant.directoryMediaImages
             )
             if (!file_i.exists()) {
                 file_i.mkdir()
             }
             val file_a = File(
                 Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
-                    .toString() + GlobalConstant.directoryInstaShoryDirectorydownload_audio
+                    .toString() + GlobalConstant.directoryMediaAudio
             )
             if (!file_a.exists()) {
                 file_a.mkdir()
@@ -115,18 +115,18 @@ class DownloadWorker(appContext: Context, params: WorkerParameters) :
         when (ext) {
             "png", "jpg", "gif", "jpeg" -> {
                 mypath =
-                    Environment.getExternalStorageDirectory().absolutePath + File.separator + Environment.DIRECTORY_DOWNLOADS + GlobalConstant.directoryInstaShoryDirectorydownload_images
+                    Environment.getExternalStorageDirectory().absolutePath + File.separator + Environment.DIRECTORY_DOWNLOADS + GlobalConstant.directoryMediaImages
             }
 
             "mp4", "webm" -> {
                 mypath =
-                    Environment.getExternalStorageDirectory().absolutePath + File.separator + Environment.DIRECTORY_DOWNLOADS + GlobalConstant.directoryInstaShoryDirectorydownload_videos
+                    Environment.getExternalStorageDirectory().absolutePath + File.separator + Environment.DIRECTORY_DOWNLOADS + GlobalConstant.directoryMediaVideos
 
             }
 
             "mp3", "m4a", "wav" -> {
                 mypath =
-                    Environment.getExternalStorageDirectory().absolutePath + File.separator + Environment.DIRECTORY_DOWNLOADS + GlobalConstant.directoryInstaShoryDirectorydownload_audio
+                    Environment.getExternalStorageDirectory().absolutePath + File.separator + Environment.DIRECTORY_DOWNLOADS + GlobalConstant.directoryMediaAudio
             }
         }
 

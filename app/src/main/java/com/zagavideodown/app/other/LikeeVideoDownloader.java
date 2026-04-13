@@ -234,7 +234,7 @@ public class LikeeVideoDownloader implements VideoDownloader {
                     outputFileName = outputFileName.substring(0, 100);
 
 
-                output = new BufferedOutputStream(new FileOutputStream(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) + "/" + GlobalConstant.directoryInstaShoryDirectorydownload_videos + outputFileName));
+                output = new BufferedOutputStream(new FileOutputStream(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) + "/" + GlobalConstant.directoryMediaVideos + outputFileName));
 
                 byte[] data = new byte[1024];
                 long total = 0;

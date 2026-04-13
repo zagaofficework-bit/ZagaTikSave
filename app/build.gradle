@@ -2,16 +2,31 @@ plugins {
     alias(libs.plugins.android.application)
 }
 
+def keystoreProperties = new Properties()
+def keystorePropertiesFile = rootProject.file('key.properties')
+if (keystorePropertiesFile.exists()) {
+    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+}
+
 android {
     namespace 'com.zagavideodown.app'
     compileSdk 36
+
+    signingConfigs {
+        release {
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+            storeFile keystoreProperties['storeFile'] ? file(keystoreProperties['storeFile']) : null
+            storePassword keystoreProperties['storePassword']
+        }
+    }
 
     defaultConfig {
         applicationId "com.zagavideodown.app"
         minSdk 24
         targetSdk 36
-        versionCode 1
-        versionName "1.0"
+        versionCode 5
+        versionName "1.0.4"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         ndk {
@@ -24,11 +39,16 @@ android {
         release {
             minifyEnabled true
             shrinkResources true
+            crunchPngs true
+            signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            ndk {
+                debugSymbolLevel 'FULL'
+            }
         }
         debug {
-            minifyEnabled true
-            shrinkResources true
+            minifyEnabled false
+            shrinkResources false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -47,14 +67,29 @@ android {
         viewBinding = true
     }
     packagingOptions {
+        resources {
+            excludes += '/META-INF/{AL2.0,LGPL2.1}'
+            excludes += '**/baseline-prof.txt'
+        }
         jniLibs {
             useLegacyPackaging = true
+            doNotStrip "**/libffmpeg.zip.so"
+            doNotStrip "**/libpython.zip.so"
         }
     }
     sourceSets {
         main {
             jniLibs.srcDirs = ['libs']
         }
+    }
+
+    lint {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+
+    configurations.all {
+        exclude group: 'com.android.support'
     }
 }
 
@@ -100,7 +135,9 @@ dependencies {
     implementation libs.commons.compress
     implementation libs.circleimageview
     implementation libs.photoview
-    implementation libs.android.networking
+    implementation(libs.android.networking) {
+        exclude group: 'com.android.support'
+    }
     implementation 'io.reactivex.rxjava3:rxandroid:3.0.2'
     implementation("io.reactivex.rxjava3:rxjava:3.1.10")
 

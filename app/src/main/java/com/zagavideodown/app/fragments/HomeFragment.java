@@ -181,6 +181,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void setUpProgressDialog() {
+        if (mActivity == null || mActivity.isFinishing() || mActivity.isDestroyed()) return;
         progressDralogGenaratinglink = new ProgressDialog(mActivity);
         progressDralogGenaratinglink.setMessage(mActivity.getResources().getString(R.string.genarating_download_link));
         progressDralogGenaratinglink.setCancelable(false);
@@ -210,11 +211,9 @@ public class HomeFragment extends Fragment {
         drawerLayout = mActivity.findViewById(R.id.activity_main_drawer);
         binding.btnMenu.setOnClickListener(v -> drawerLayout.openDrawer(GravityCompat.START));
         binding.btnSetting.setOnClickListener(v -> startActivity(new Intent(mActivity, SettingsActivity.class)));
-        binding.btnInstagram.setOnClickListener(v -> Utils.openAppInstagram(mActivity));
         binding.btnPaste.setOnClickListener(v -> pasteLink());
         binding.btnDownload.setOnClickListener(v -> downloadVideo(binding.edtUrl.getText().toString()));
         binding.ivClear.setOnClickListener(v -> clearEditText());
-        binding.btnTiktok.setOnClickListener(view -> Utils.openTikTok(requireContext()));
     }
 
     private void clearEditText() {
@@ -224,15 +223,19 @@ public class HomeFragment extends Fragment {
 
 
     private void pasteLink() {
+        if (mActivity == null) return;
         ClipboardManager clipBoardManager = (ClipboardManager) mActivity.getSystemService(Context.CLIPBOARD_SERVICE);
+        if (clipBoardManager == null) return;
         ClipData primaryClipData = clipBoardManager.getPrimaryClip();
         CharSequence clip = "";
 
         if (primaryClipData != null && primaryClipData.getItemCount() > 0) {
-            clip = primaryClipData.getItemAt(0).getText();
+            CharSequence text = primaryClipData.getItemAt(0).getText();
+            if (text != null) clip = text;
         }
-        binding.edtUrl.setText(Editable.Factory.getInstance().newEditable(clip));
-//        downloadVideo(clip.toString());
+        if (binding != null) {
+            binding.edtUrl.setText(Editable.Factory.getInstance().newEditable(clip));
+        }
     }
 
 
@@ -259,7 +262,7 @@ public class HomeFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        if (getActivity() != null) {
+        if (getActivity() != null && binding != null) {
             MainActivity activity = (MainActivity) getActivity();
             String url = activity.getMyData();
             if (url != null && !url.isEmpty()) {
@@ -271,10 +274,19 @@ public class HomeFragment extends Fragment {
     }
 
     public void downloadVideo(String url1) {
+        // Guard against being called after the view is destroyed or activity detached
+        if (mActivity == null || mActivity.isFinishing() || mActivity.isDestroyed()) return;
+        if (binding == null) return;
+        if (url1 == null) url1 = "";
+
         Utils.hideKeyboard(mActivity);
 
-
-        progressDralogGenaratinglink.setMessage(mActivity.getString(R.string.genarating_download_link));
+        if (progressDralogGenaratinglink == null) {
+            setUpProgressDialog();
+        }
+        if (progressDralogGenaratinglink != null) {
+            progressDralogGenaratinglink.setMessage(mActivity.getString(R.string.genarating_download_link));
+        }
         if (TextUtils.isEmpty(url1.trim()) && url1.trim().isEmpty()) {
             ShowToast(mActivity, mActivity.getResources().getString(R.string.enter_valid));
         } else {
@@ -290,171 +302,22 @@ public class HomeFragment extends Fragment {
                 return;
             }
 
-
-            if (url.contains("instagram.com")) {
-                if (!mActivity.isFinishing()) {
-                    if (!GlobalConstant.isNonPlayStoreApp) {
-                        Utils.ShowToast(mActivity, mActivity.getResources().getString(R.string.something_webiste_panele_block));
-                        return;
-                    }
-                    if (!Utils.isSocialMediaOn("instagram.com")) {
-                        Utils.ShowToast(mActivity, mActivity.getResources().getString(R.string.something_webiste_panele_block));
-                        return;
-                    }
-                    progressDralogGenaratinglink.show();
-                    startInstagramDownload(url);
-                }
-            } else if (url.contains("tik")) {
-                if (binding.edtUrl.getText().toString().contains("tik")) {
-                    new Tiktok(mActivity, new AsyncResponse() {
-                        @Override
-                        public void processFinish(long output) {
-                            String a = Tiktok.playHD;
-                            String fileName = "tiktok" + System.currentTimeMillis() + "_VideoHD" + ".mp4";
-                            try {
-                                DownloadId1 = Utils.startDownload(a, GlobalConstant.RootDirectoryHD, mActivity, fileName);
-                                try {
-                                    Toast.makeText(mActivity, mActivity.getResources().getString(R.string.downloadstarted), Toast.LENGTH_SHORT).show();
-                                } catch (Exception ignored) {
-                                }
-                            } catch (Exception ignored) {
-                            }
-                        }
-                    }).execute(binding.edtUrl.getText().toString());
-
-                } else {
-                    Toast.makeText(mActivity, R.string.linktiktok, Toast.LENGTH_SHORT).show();
-                }
-            } else if (url.contains("threads.net")) {
-                String myurl = url;
-                try {
-                    myurl = Utils.extractUrls(myurl).get(0);
-                } catch (Exception ignored) {
-                }
-                dismissMyDialogFrag();
-                Intent intent = new Intent(requireActivity(), GetLinkThroughWebView2.class);
-                intent.putExtra("myurlis", myurl);
-                startActivityForResult(intent, 2);
-            } else if (url.contains("myjosh.in")) {
-                String myurl = url;
-                try {
-                    myurl = Utils.extractUrls(myurl).get(0);
-                } catch (Exception ignored) {
-                }
-                DownloadVideosMain2.Start(requireActivity(), myurl.trim(), false);
-                Log.e("downloadFileName12", myurl.trim());
-
-            } else if (url.contains("audiomack")) {
-                if (!Utils.isSocialMediaOn("audiomack")) {
-                    Utils.ShowToast(mActivity, mActivity.getResources().getString(R.string.somthing_webiste_panele_block));
-                }
-                dismissMyDialogFrag();
-                Intent intent = new Intent(requireActivity(), GetLinkThroughWebView2.class);
-                intent.putExtra("myurlis", url);
-                startActivityForResult(intent, 2);
-
-            } else if (url.contains("ok.ru")) {
-                if (!Utils.isSocialMediaOn("ok.ru")) {
-                    Utils.ShowToast(mActivity, mActivity.getResources().getString(R.string.somthing_webiste_panele_block));
-
-                }
-                dismissMyDialogFrag();
-                Intent intent = new Intent(requireActivity(), GetLinkThroughWebView2.class);
-                intent.putExtra("myurlis", url);
-                startActivityForResult(intent, 2);
-            } else if (url.contains("tiki")) {
-                if (!Utils.isSocialMediaOn("tiki")) {
-                    Utils.ShowToast(mActivity, mActivity.getResources().getString(R.string.somthing_webiste_panele_block));
-                }
-                dismissMyDialogFrag();
-                Intent intent = new Intent(requireActivity(), GetLinkThroughWebView2.class);
-                intent.putExtra("myurlis", url);
-                startActivityForResult(intent, 2);
-            } else if (url.contains("vidlit")) {
-                if (!Utils.isSocialMediaOn("vidlit")) {
-                    Utils.ShowToast(mActivity, mActivity.getResources().getString(R.string.somthing_webiste_panele_block));
-                }
-                dismissMyDialogFrag();
-                Intent intent = new Intent(requireActivity(), GetLinkThroughWebView2.class);
-                intent.putExtra("myurlis", url);
-                startActivityForResult(intent, 2);
-            } else if (url.contains("byte.co")) {
-                if (!Utils.isSocialMediaOn("byte.co")) {
-                    Utils.ShowToast(mActivity, mActivity.getResources().getString(R.string.somthing_webiste_panele_block));
-                }
-                dismissMyDialogFrag();
-                Intent intent = new Intent(requireActivity(), GetLinkThroughWebView2.class);
-                intent.putExtra("myurlis", url);
-                startActivityForResult(intent, 2);
-            } else if (url.contains("fthis.gr")) {
-                if (!Utils.isSocialMediaOn("fthis.gr")) {
-                    Utils.ShowToast(mActivity, mActivity.getResources().getString(R.string.somthing_webiste_panele_block));
-                }
-                dismissMyDialogFrag();
-                Intent intent = new Intent(requireActivity(), GetLinkThroughWebView2.class);
-                intent.putExtra("myurlis", url);
-                startActivityForResult(intent, 2);
-            } else if (url.contains("fw.tv") || url.contains("firework.tv")) {
-                if (!Utils.isSocialMediaOn("fw.tv") || !Utils.isSocialMediaOn("firework.tv")) {
-                    Utils.ShowToast(mActivity, mActivity.getResources().getString(R.string.somthing_webiste_panele_block));
-                }
-                dismissMyDialogFrag();
-                Intent intent = new Intent(requireActivity(), GetLinkThroughWebView2.class);
-                intent.putExtra("myurlis", url);
-                startActivityForResult(intent, 2);
-            } else if (url.contains("traileraddict")) {
-                if (!Utils.isSocialMediaOn("traileraddict")) {
-                    Utils.ShowToast(mActivity, mActivity.getResources().getString(R.string.somthing_webiste_panele_block));
-                }
-                dismissMyDialogFrag();
-                Intent intent = new Intent(requireActivity(), GetLinkThroughWebView2.class);
-                intent.putExtra("myurlis", url);
-                startActivityForResult(intent, 2);
-            } else if (url.contains("bemate")) {
-                if (!Utils.isSocialMediaOn("bemate")) {
-                    Utils.ShowToast(mActivity, mActivity.getResources().getString(R.string.somthing_webiste_panele_block));
-                }
-                dismissMyDialogFrag();
-                String myurl = url;
-                try {
-                    myurl = Utils.extractUrls(myurl).get(0);
-                } catch (Exception ignored) {
-                }
-                Intent intent = new Intent(requireActivity(), GetLinkThroughWebView2.class);
-                intent.putExtra("myurlis", myurl);
-                startActivityForResult(intent, 2);
-            } else if (url.contains("chingari")) {
-                String myurl = url;
-                try {
-                    myurl = Utils.extractUrls(myurl).get(0);
-                } catch (Exception ignored) {
-                }
-                DownloadVideosMain2.Start(requireActivity(), myurl.trim(), false);
-
-
-            } else if (url.contains("sck.io") || url.contains("snackvideo")) {
-                String myurl = url;
-                try {
-                    myurl = Utils.extractUrls(myurl).get(0);
-                } catch (Exception ignored) {
-                }
-                DownloadVideosMain2.Start(requireActivity(), myurl.trim(), false);
-
-            } else {
-                String myurl = url;
-                try {
-                    myurl = Utils.extractUrls(myurl).get(0);
-                } catch (Exception ignored) {
-                }
-                Log.i("THANG123456","o day aaaa222");
-
-                DownloadVideosMain2.Start(requireActivity(), myurl.trim(), false);
-
-
-//                DownloadVideosMain.Start(mActivity, myurl.trim(), false, () -> {
-
-//                });
+            if (url.contains("youtube.com") || url.contains("youtu.be") || 
+                url.contains("instagram.com") || url.contains("tiktok.com") || 
+                url.contains("facebook.com") || url.contains("fb.watch") ||
+                url.contains("threads.net") || url.contains("snapchat.com")) {
+                Utils.ShowToast(mActivity, mActivity.getResources().getString(R.string.platform_blocked));
+                return;
             }
+
+            // Generic downloader for other platforms or direct links
+            String myurl = url;
+            try {
+                myurl = Utils.extractUrls(myurl).get(0);
+            } catch (Exception ignored) {
+            }
+            Log.i("ZagaMediaManager", "Starting generic download for: " + myurl);
+            DownloadVideosMain2.Start(requireActivity(), myurl.trim(), false);
         }
     }
 

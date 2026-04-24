@@ -116,6 +116,6 @@
     <string name="policy_disclaimer">This app does not support downloading content from YouTube or other copyrighted platforms. Users are responsible for content they download.</string>
     <string name="platform_blocked">This platform is not supported due to Google Play policies.</string>
 
-    <string name="AdmobInterstitialAds" translatable="false">ca-app-pub-3940256099942544/1033173712</string>
-    <string name="AdmobNativeAds" translatable="false">ca-app-pub-3940256099942544/2247696110</string>
+    <string name="AdmobInterstitialAds" translatable="false">ca-app-pub-2933415255715410/2628224451</string>
+    <string name="AdmobNativeAds" translatable="false">ca-app-pub-2933415255715410/97501423610</string>
 </resources>
